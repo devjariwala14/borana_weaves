@@ -12,7 +12,7 @@ class DB_Connect
     // Connecting to database
     public function connect()
     {
-        ($con = mysqli_connect("localhost", "pragmanx_borana", "rUkrHLan]DN]", "pragmanx_borana")) or
+        ($con = mysqli_connect("localhost", "root", "", "borana_w_db")) or
             die("Connection Failed...!");
 
         if (!$con) {
