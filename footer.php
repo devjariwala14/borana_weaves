@@ -1,4 +1,4 @@
-   <footer class="page-section footer bg-gray-light-1">
+<footer class="page-section footer bg-gray-light-1">
             <div class="container">
                 <div class="row ">
                     <div class="col-md-4 col-lg-4  mb-sm-50">
@@ -44,14 +44,9 @@
                                     <li><a href="index.php">Home</a></li>
                                     <li><a href="about.php">About</a></li>
                                     
-                                    
-                                    
                                     <li><a href="contact.php">Contact</a></li>
                                 </ul>
                             </div>
-
-                           
-
                             <!-- Footer Widget -->
                             <div class="col-sm-4 mt-30">
 
