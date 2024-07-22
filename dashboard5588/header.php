@@ -250,13 +250,23 @@ if (!isset($_SESSION["userlogin"])) {
         </a>
       </li>
 
-       <!-- IPO -->
+      
+       <!-- Company Information -->
        <li class="nav-item">
-        <a class="nav-link collapsed" href="ipo.php">
+        <a class="nav-link collapsed" href="comp_info.php">
           <i class="bi bi-clipboard-data"></i>
-          <span>IPO</span>
+          <span>Company Information</span>
         </a>
       </li>
+
+       <!-- Forms And Application -->
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="investor_contact.php">
+          <i class="bi bi-file-earmark-text"></i>
+          <span>Investors Contact</span>
+        </a>
+      </li>
+
 
        <!-- Corporate Announcement -->
        <li class="nav-item">

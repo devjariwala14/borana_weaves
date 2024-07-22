@@ -25,6 +25,7 @@ session_start();
     <link rel="icon" href="images/borana_favi.png" type="image/svg+xml">
 
     <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style-responsive.css">
@@ -39,7 +40,6 @@ session_start();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
-
 </head>
 
 <body class="appear-animate">
@@ -136,30 +136,31 @@ session_start();
                                 <li class="mn-sub-multi ">
                                     <ul>
                                         <li><a href="announcement.php">Announcement</a></li>
-                                            <li><a href="notice.php">Notices</a></li>
-                                            <li><a href="cor_gov_report.php">Corporate Governance Report</a></li>
-                                            <li><a href="shareholding_pattern.php">Shareholding Pattern</a></li>
-                                            <li><a href="financial_results.php">Financial Results</a></li>
-                                            <li><a href="annual_report.php">Annual Report</a></li>
-                                            <li><a href="annual_compli_report.php">Annual Secretarial Compliance Report</a></li>
-                                            <li><a href="subsidiary_report.php">Subsidiary Financial Report</a></li>
-                                            <li><a href="publication.php">Publication</a></li>
-                                            <li><a href="investor_presentation.php">Investor Presentation</a></li>
-                                            <li><a href="policies.php">Policies</a></li> 
+                                        <li><a href="notice.php">Notices</a></li>
+                                        <li><a href="cor_gov_report.php">Corporate Governance Report</a></li>
+                                        <li><a href="shareholding_pattern.php">Shareholding Pattern</a></li>
+                                        <li><a href="financial_results.php">Financial Results</a></li>
+                                        <li><a href="annual_report.php">Annual Report</a></li>
+                                        <li><a href="annual_compli_report.php">Annual Secretarial Compliance Report</a></li>
+                                        <li><a href="subsidiary_report.php">Subsidiary Financial Report</a></li>
+                                        <!-- <li><a href="#">Directors</a></li> -->
+                                        <li><a href="publication.php">Publication</a></li>
+                                        <li><a href="LDOR.php">Disclosures under Regulation 46 of SEBI (LODR) Regulations</a></li>
                                     </ul>
                                 </li>
                                 <li class="mn-sub-multi">
                                     <ul>
-                                    <li><a href="annual_return.php">Annual Return</a></li>
-                                            <li><a href="forms_and_apps.php">Forms and Applications</a></li>
-                                            <li><a href="ipo.php">IPO</a></li>
-                                            <li><a href="credit_rating.php">Credit Rating</a></li>
-                                            <li><a href="company_information.php">Company Information</a></li>
-                                            <li><a href="investor_contact.php">Investor Contact</a></li>
-                                            <li><a href="LDOR.php">Disclosures under Regulation 46 of SEBI (LODR) Regulations</a></li>
-                                            <li><a href="preferntial_issue.php">Preferential Issue</a></li>
-                                            <li><a href="investors_complaint.php">Investors Complaint</a></li>
-                                            <li><a href="audit_report.php">Reconciliation of share capital audit report</a></li>
+                                        <li><a href="policies.php">Policies</a></li>
+                                        <li><a href="annual_return.php">Annual Return</a></li>
+                                        <li><a href="forms_and_apps.php">Forms and Applications</a></li>
+                                        <li><a href="ipo.php">IPO</a></li>
+                                        <li><a href="credit_rating.php">Credit Rating</a></li>
+                                        <li><a href="company_information.php">group Information</a></li>
+                                        <li><a href="investor_contact.php">Investor Contact</a></li>
+                                        <li><a href="investor_presentation.php">Investor Presentation</a></li>
+                                        <li><a href="preferntial_issue.php">Preferential Issue</a></li>
+                                        <li><a href="investors_complaint.php">Investors Complaint</a></li>
+                                        <li><a href="audit_report.php">Reconciliation of share capital audit report</a></li>
                                     </ul>
                                 </li>
                             </ul>
