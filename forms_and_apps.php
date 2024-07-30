@@ -78,7 +78,7 @@ $stmt_product->close();
                         <div class="col-lg-5">
                             <!-- Send Button -->
                             <div class="pt-10">
-                                <a href="documents/announcement/<?php echo $data["file"]?>" download="download" class="btn btn-mod btn-large btn-round btn-hover-anim"><span>Download</span></a>
+                                <a href="dashboard5588/documents/forms_and_apps/<?php echo $data["file"]?>" download="download" class="btn btn-mod btn-large btn-round btn-hover-anim"><span>Download</span></a>
                             </div>
                         </div>
 

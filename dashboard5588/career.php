@@ -95,10 +95,10 @@ function deletedata(id) {
                     <table class="table datatable">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col">Sr.No</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">number</th>
+                                <th scope="col">Phone Number</th>
                                 <th scope="col">Message</th>
                                 <th scope="col">Document</th>
                                 <th scope="col">Action</th>

@@ -2,7 +2,7 @@
 
 include "header.php";
 
-$stmt_product = $obj->con1->prepare("SELECT description FROM `comp_info`");
+$stmt_product = $obj->con1->prepare("SELECT * FROM `ldor`");
 $stmt_product->execute();
 $res = $stmt_product->get_result();
 $stmt_product->close();
@@ -23,7 +23,7 @@ $stmt_product->close();
                     <div class="col-md-8 offset-md-2">
 
                         <h1 class="hs-title-1 mb-20">
-                            <span class="wow charsAnimIn" data-splitting="chars">Company Information</span>
+                            <span class="wow charsAnimIn" data-splitting="chars">Disclosures under Regulation 46 of SEBI (LODR) Regulations</span>
                         </h1>
 
                         <div class="row">
@@ -54,7 +54,7 @@ $stmt_product->close();
                 
                 <div class="col-12">
                    
-                    <h1>Company Information</h1>
+                    <h1>DISCLOSURES UNDER REGULATION 46 OF SEBI (LODR) REGULATIONS</h1>
 
                     <?php
                                 while($data = mysqli_fetch_array($res))
@@ -79,8 +79,11 @@ $stmt_product->close();
 
         </div>
     </section>
+    <!-- End Section -->
 
 </main>
+
+
 <?php
 
 include "footer.php";

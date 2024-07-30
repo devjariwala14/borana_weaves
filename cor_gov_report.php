@@ -79,7 +79,7 @@ $stmt->close();
 
                         <!-- Send Button -->
                         <div class="pt-10">
-                        <a href="documents/announcement/<?php echo $data["filename"]?>" download="download" class=" btn btn-mod btn-large btn-round btn-hover-anim"><span>Download</span></a>
+                        <a href="dashboard5588/documents/inv_data/<?php echo $data["filename"]?>" download="download" class=" btn btn-mod btn-large btn-round btn-hover-anim"><span>Download</span></a>
                         </div>
                     </div>
 

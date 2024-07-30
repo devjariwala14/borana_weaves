@@ -20,6 +20,7 @@ if (isset($_COOKIE['edit_id'])) { $mode='edit' ; $editId=$_COOKIE['edit_id'];
 
     if (isset($_REQUEST["save"])) {
     $description = $_REQUEST["description"];
+    $unit_details = $_REQUEST["u_details"];
     $unit = $_REQUEST["unit"];
     $title = $_REQUEST["title"];
     $img_title = $_REQUEST["img_title"];
@@ -44,8 +45,8 @@ if (isset($_COOKIE['edit_id'])) { $mode='edit' ; $editId=$_COOKIE['edit_id'];
     }
 
     try {
-    $stmt = $obj->con1->prepare("INSERT INTO `manufacturing`(`image`,`description`,`title`,`unit`,`image_title`) VALUES (?,?,?,?,?)");
-    $stmt->bind_param("sssss", $manufac_img, $description,$title, $unit, $img_title );
+    $stmt = $obj->con1->prepare("INSERT INTO `manufacturing`(`image`,`description`,`unit_details`,`title`,`unit`,`image_title`) VALUES (?,?,?,?,?,?)");
+    $stmt->bind_param("ssssss", $manufac_img, $description,$unit_details,$title, $unit, $img_title );
     $Resp = $stmt->execute();
     $insert_manu_id = mysqli_insert_id($obj->con1);
 
@@ -112,6 +113,7 @@ if (isset($_COOKIE['edit_id'])) { $mode='edit' ; $editId=$_COOKIE['edit_id'];
     $title = $_REQUEST["title"];
     $img_title = $_REQUEST["img_title"];
     $description = $_REQUEST["description"];
+    $unit_details = $_REQUEST["u_details"];
     $manufac_img = $_FILES['image']['name'];
     $manufac_img = str_replace(' ', '_', $manufac_img);
     $manufac_img_path = $_FILES['image']['tmp_name'];
@@ -140,8 +142,8 @@ if (isset($_COOKIE['edit_id'])) { $mode='edit' ; $editId=$_COOKIE['edit_id'];
     }
 
     try {
-    $stmt = $obj->con1->prepare("UPDATE `manufacturing` SET `description`=?,`image`=?,`title`=?,unit=?,`image_title`=? WHERE `id`=?");
-    $stmt->bind_param("sssssi", $description, $PicFileName,$title,$unit ,$img_title,$e_id);
+    $stmt = $obj->con1->prepare("UPDATE `manufacturing` SET `description`=?,`unit_details`=?,`image`=?,`title`=?,unit=?,`image_title`=? WHERE `id`=?");
+    $stmt->bind_param("ssssssi", $description,$unit_details, $PicFileName,$title,$unit ,$img_title,$e_id);
     $Resp = $stmt->execute();
     if (!$Resp) {
     throw new Exception("Problem in updating! " . strtok($obj->con1->error, "("));
@@ -206,7 +208,7 @@ if (isset($_COOKIE['edit_id'])) { $mode='edit' ; $editId=$_COOKIE['edit_id'];
                             <select class="form-select" aria-label="Default select example" id="unit" name="unit"
                                 <?php echo isset($mode) && $mode == 'view' ? 'disabled' : '' ?> required>
                                 <option value="">Choose Units</option>
-                                <option value="Unit1"
+                                <option value="unit1"
                                     <?php echo isset($mode) && $data['unit'] == "unit1" ? "selected" : "" ?>>Unit 1
                                 </option>
                                 <option value="unit2"
@@ -239,6 +241,12 @@ if (isset($_COOKIE['edit_id'])) { $mode='edit' ; $editId=$_COOKIE['edit_id'];
                                 required
                                 <?php echo isset($mode) && $mode == 'view' ? 'readonly' : '' ?>><?php echo (isset($mode)) ? $data['description'] : '' ?></textarea>
                         </div>
+                        <!-- <div class="col-md-12">
+                            <label for="u_details" class="col-sm-2 col-form-label">Unit Details</label>
+                            <textarea class="tinymce-editor" name="u_details" id="u_details"
+                                <?php echo isset($mode) && $mode == 'view' ? 'disabled' : '' ?>><?php echo (isset($mode)) ? $data['unit_details'] : '' ?></textarea>
+                            
+                        </div> -->
                         <div class="col-md-12">
                             <label for="file_name" class="form-label">Image</label>
                             <input type="file" class="form-control" id="image" name="image"
@@ -290,24 +298,24 @@ if (isset($_COOKIE['edit_id'])) { $mode='edit' ; $editId=$_COOKIE['edit_id'];
 
 <div class="modal fade" id="deleteModal" tabindex="-1">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Confirm Deletion</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post">
+                <input type="hidden" name="delete_id" id="delete_id">
+                <div class="modal-body">
+                    Are you sure you want to delete this record?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" name="btndelete" id="btndelete">Delete</button>
+                </div>
+            </form>
         </div>
-        <form method="post">
-          <input type="hidden" name="delete_id" id="delete_id">
-          <div class="modal-body">
-            Are you sure you want to delete this record?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" name="btndelete" id="btndelete">Delete</button>
-          </div>
-        </form>
-      </div>
     </div>
-  </div>
+</div>
 
 <section class="section" <?php echo (isset($mode))?'':'hidden' ?>>
     <div class="row">
@@ -352,8 +360,7 @@ if (isset($_COOKIE['edit_id'])) { $mode='edit' ; $editId=$_COOKIE['edit_id'];
                         $extn = strtolower(pathinfo($row["file_name"], PATHINFO_EXTENSION));
                         if (in_array($extn,$img_array)) {
                     ?>
-                                <td><img src="images/manu_img/<?php echo $row["file_name"]; ?>" width="200"
-                                        height="200"
+                                <td><img src="images/manu_img/<?php echo $row["file_name"]; ?>" width="200" height="200"
                                         style="display:<?php (in_array($extn, $img_array))?'block':'none' ?>"
                                         class="object-cover shadow rounded"></td>
                                 <?php
@@ -429,14 +436,14 @@ function readURL(input, preview) {
                 reader.onload = function(e) {
                     $('#' + preview).html('<img src="' + e.target.result +
                         '" name="PreviewImage" id="PreviewImage" width="400" height="400" class="object-cover shadow rounded" style="display:inline-block; margin:2%;">'
-                        );
+                    );
                 };
             } else if (extn[1].toLowerCase() == "mp4" || extn[1].toLowerCase() == "webm" || extn[1].toLowerCase() ==
                 "ogg") {
                 reader.onload = function(e) {
                     $('#' + preview).html('<video src="' + e.target.result +
                         '" name="PreviewVideo" id="PreviewVideo" width="400" height="400" style="display:inline-block" class="object-cover shadow rounded" controls></video>'
-                        );
+                    );
                 }
             }
 
@@ -468,7 +475,7 @@ function readURL_multiple(input) {
                         $('#preview_image_div').append('<img src="' + e.target.result + '" name="PreviewImage' + i +
                             '" id="PreviewImage' + i +
                             '" width="400" height="400" class="object-cover shadow rounded" style="display:inline-block; margin:2%;">'
-                            );
+                        );
                     };
                 } else if (extn[1].toLowerCase() == "mp4" || extn[1].toLowerCase() == "webm" || extn[1].toLowerCase() ==
                     "ogg") {
@@ -476,7 +483,7 @@ function readURL_multiple(input) {
                         $('#preview_image_div').append('<video src="' + e.target.result + '" name="PreviewVideo' +
                             i + '" id="PreviewVideo' + i +
                             '" width="400" height="400" style="display:inline-block" class="object-cover shadow rounded" controls></video>'
-                            );
+                        );
                     }
                 }
 

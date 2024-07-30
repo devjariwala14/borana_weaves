@@ -113,7 +113,6 @@ function addsubimages(id) {
                                 <th scope="col">Sr.no</th>
                                 <th scope="col">Unit</th>
                                 <th scope="col">Title</th>
-                                <th scope="col">Description</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -129,7 +128,6 @@ function addsubimages(id) {
                                 <th scope="row"><?php echo $i ?></th>
                                 <td><?php echo $row["unit"]; ?></td>
                                 <td><?php echo $row["title"]; ?></td>
-                                <td><?php echo $row["description"]; ?></td>
                                 <td>
                                     <?php
                                         $img_array = array("jpg", "jpeg", "png", "bmp");

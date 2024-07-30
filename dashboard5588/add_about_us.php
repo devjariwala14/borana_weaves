@@ -23,6 +23,7 @@ if (isset($_COOKIE['view_id'])) {
 
 if (isset($_REQUEST['update'])) {
     $e_id = $_COOKIE['edit_id'];
+    $title=$_REQUEST['title'];
     $desc = $_REQUEST['description'];
     $a_image = $_FILES['a_image']['name'];
     $a_image = str_replace(' ', '_', $a_image);
@@ -53,8 +54,8 @@ if (isset($_REQUEST['update'])) {
 	}
     try {
         // echo ("UPDATE `about_us` SET `description`= $desc , `image`= $PicFileName  WHERE `id`= $e_id");
-        $stmt = $obj->con1->prepare("UPDATE `about_us` SET `description`=?,`image`=? ,`status`=? WHERE `id`=?");
-        $stmt->bind_param("sssi", $desc, $PicFileName,$status, $e_id);
+        $stmt = $obj->con1->prepare("UPDATE `about_us` SET `title`=?,`description`=?,`image`=? ,`status`=? WHERE `id`=?");
+        $stmt->bind_param("ssssi",$title, $desc, $PicFileName,$status, $e_id);
         $Resp = $stmt->execute();
         $stmt->close();
         if (!$Resp) {
@@ -76,7 +77,8 @@ if (isset($_REQUEST['update'])) {
 }
 if (isset($_REQUEST["save"])) {
    // $desc = $_REQUEST['quill_content'];
-     $desc = $_REQUEST['description'];
+   $title=$_REQUEST['title'];
+    $desc = $_REQUEST['description'];
     $a_image = $_FILES['a_image']['name'];
     $a_image = str_replace(' ', '_', $a_image);
     $a_image_path = $_FILES['a_image']['tmp_name'];
@@ -100,8 +102,8 @@ if (isset($_REQUEST["save"])) {
 
     try {
         // echo ("INSERT INTO `about_us`(`description`, `image`,`status`) VALUES ( $desc, $PicFileName,$status)");
-        $stmt = $obj->con1->prepare("INSERT INTO `about_us`(`description`, `image`,`status`) VALUES (?,?,?)");
-        $stmt->bind_param("sss", $desc, $PicFileName, $status );
+        $stmt = $obj->con1->prepare("INSERT INTO `about_us`(`title`,`description`, `image`,`status`) VALUES (?,?,?,?)");
+        $stmt->bind_param("ssss",$title, $desc, $PicFileName, $status );
         $Resp = $stmt->execute();
         if (!$Resp) {
             throw new Exception(
@@ -132,7 +134,12 @@ if (isset($_REQUEST["save"])) {
 
         <!-- General Form Elements -->
         <form method="post" enctype="multipart/form-data">
-
+            <div class="col-md-12">
+                <label for="title" class="col-sm-2 col-form-label">Title</label>
+                <input type="text" id="title" name="title" class="form-control"
+                    value="<?php echo (isset($mode)) ? $data['title'] : '' ?>"
+                    <?php echo isset($mode) && $mode == 'view' ? 'readonly' : '' ?> required />
+            </div>
             <div class="col-md-12">
                 <label for="discription" class="col-sm-2 col-form-label">Description</label>
                 <textarea class="tinymce-editor" name="description" id="description"
@@ -143,51 +150,51 @@ if (isset($_REQUEST["save"])) {
                 <label for="inputNumber" class="col-sm-2 col-form-label  mt-4">Image</label>
                 <input class="form-control" type="file" id="a_image" name="a_image" type="file" data_btn_text="Browse"
                     onchange="readURL(this,'PreviewImage')" onchange="readURL(this,'PreviewImage')" />
-    </div>
+            </div>
 
-    <div>
-        <label class="font-bold text-primary mt-2  mb-3"
-            style="display:<?php echo (isset($mode)) ? 'block' : 'none' ?>">Preview</label>
-        <img src="<?php echo (isset($mode)) ? 'images/about/' . $data["image"] : '' ?>" name="PreviewImage"
-            id="PreviewImage" height="300" style="display:<?php echo (isset($mode)) ? 'block' : 'none' ?>"
-            class="object-cover shadow rounded  mt-3  mb-3">
-        <div id="imgdiv" style="color:red"></div>
-        <input type="hidden" name="old_img" id="old_img"
-            value="<?php echo (isset($mode) && $mode == 'edit') ? $data["image"] : '' ?>" />
+            <div>
+                <label class="font-bold text-primary mt-2  mb-3"
+                    style="display:<?php echo (isset($mode)) ? 'block' : 'none' ?>">Preview</label>
+                <img src="<?php echo (isset($mode)) ? 'images/about/' . $data["image"] : '' ?>" name="PreviewImage"
+                    id="PreviewImage" height="300" style="display:<?php echo (isset($mode)) ? 'block' : 'none' ?>"
+                    class="object-cover shadow rounded  mt-3  mb-3">
+                <div id="imgdiv" style="color:red"></div>
+                <input type="hidden" name="old_img" id="old_img"
+                    value="<?php echo (isset($mode) && $mode == 'edit') ? $data["image"] : '' ?>" />
+            </div>
+            <div class="col-md-6 mt-2">
+                <label for="inputEmail5" class="form-label">Status</label> <br />
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="radio" id="radio"
+                        <?php echo isset($mode) && $data['status'] == 'Enable' ? 'checked' : '' ?>
+                        class="form-radio text-primary" value="Enable" checked required
+                        <?php echo isset($mode) && $mode == 'view' ? 'disabled' : '' ?> />
+                    <label class="form-check-label" for="gridRadios1">
+                        Enable
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="radio" id="radio"
+                        <?php echo isset($mode) && $data['status'] == 'Disable' ? 'checked' : '' ?>
+                        class="form-radio text-danger" value="Disable" required
+                        <?php echo isset($mode) && $mode == 'view' ? 'disabled' : '' ?> />
+                    <label class="form-check-label" for="gridRadios2">
+                        Disable
+                    </label>
+                </div>
+            </div>
+            <div class="text-left mt-4">
+                <button type="submit" name="<?php echo isset($mode) && $mode == 'edit' ? 'update' : 'save' ?>" id="save"
+                    class="btn btn-success  <?php echo isset($mode) && $mode == 'view' ? 'd-none' : '' ?>">
+                    <?php echo isset($mode) && $mode == 'edit' ? 'Update' : 'Save' ?>
+                </button>
+                <!-- onclick="return setQuillInput()" -->
+                <button type="button" class="btn btn-danger"
+                    onclick="<?php echo (isset($mode)) ? 'javascript:go_back()' : 'window.location.reload()' ?>">
+                    Close</button>
+            </div>
+        </form><!-- End General Form Elements -->
     </div>
-    <div class="col-md-6 mt-2">
-        <label for="inputEmail5" class="form-label">Status</label> <br />
-        <div class="form-check-inline">
-            <input class="form-check-input" type="radio" name="radio" id="radio"
-                <?php echo isset($mode) && $data['status'] == 'Enable' ? 'checked' : '' ?>
-                class="form-radio text-primary" value="Enable" checked required
-                <?php echo isset($mode) && $mode == 'view' ? 'disabled' : '' ?> />
-            <label class="form-check-label" for="gridRadios1">
-                Enable
-            </label>
-        </div>
-        <div class="form-check-inline">
-            <input class="form-check-input" type="radio" name="radio" id="radio"
-                <?php echo isset($mode) && $data['status'] == 'Disable' ? 'checked' : '' ?>
-                class="form-radio text-danger" value="Disable" required
-                <?php echo isset($mode) && $mode == 'view' ? 'disabled' : '' ?> />
-            <label class="form-check-label" for="gridRadios2">
-                Disable
-            </label>
-        </div>
-    </div>
-    <div class="text-left mt-4">
-        <button type="submit" name="<?php echo isset($mode) && $mode == 'edit' ? 'update' : 'save' ?>" id="save"
-            class="btn btn-success  <?php echo isset($mode) && $mode == 'view' ? 'd-none' : '' ?>">
-            <?php echo isset($mode) && $mode == 'edit' ? 'Update' : 'Save' ?>
-        </button>
-        <!-- onclick="return setQuillInput()" -->
-        <button type="button" class="btn btn-danger"
-            onclick="<?php echo (isset($mode)) ? 'javascript:go_back()' : 'window.location.reload()' ?>">
-            Close</button>
-    </div>
-    </form><!-- End General Form Elements -->
-</div>
 </div>
 </div>
 </div>

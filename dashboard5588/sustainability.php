@@ -117,7 +117,7 @@ function deletedata(id) {
                             while ($row = mysqli_fetch_array($Resp)) { ?>
                             <tr>
                                 <th scope="row"><?php echo $i ?></th>
-                                <td><?php echo $row["description"]; ?></td>
+                                <td><?php echo mb_strlen($row["description"]) > 50 ? mb_substr($row["description"], 0, 50) . '...' : $row["description"]; ?></td>
                                 <td>
                                     <?php
                                         $img_array = array("jpg", "jpeg", "png", "bmp");

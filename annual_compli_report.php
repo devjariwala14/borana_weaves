@@ -82,13 +82,9 @@ $stmt_product->close();
 
                     <!-- Read More Link -->
                     <div class="col-lg-5">
-
                         <!-- Send Button -->
                         <div class="pt-10">
-                            <a href="documents/announcement/<?php echo $data["filename"]?>" download="download" class=" btn btn-mod btn-large btn-round btn-hover-anim"><span>Download</span></a>
-                            <!-- <button type="submit" class=" btn btn-mod btn-large btn-round btn-hover-anim"
-                                id="submit_btn" name="submit_btn" a href="documents/announcement/DUR1.pdf">
-                                <span>Download</span></button> -->
+                            <a href="dashboard5588/documents/inv_data/<?php echo $data["filename"]?>" download="download" class=" btn btn-mod btn-large btn-round btn-hover-anim"><span>Download</span></a>
                         </div>
                     </div>
 

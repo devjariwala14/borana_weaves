@@ -1,8 +1,8 @@
 <?php 
 
-include"header.php";
+include "header.php";
 
-$stmt_product = $obj->con1->prepare("SELECT * FROM `investors_data` inv,investors_menu im where inv.inv_menu_id=im.id and im.menu_name='Financial Results'");
+$stmt_product = $obj->con1->prepare("SELECT * FROM `investors_contact`");
 $stmt_product->execute();
 $res = $stmt_product->get_result();
 $stmt_product->close();
@@ -23,7 +23,7 @@ $stmt_product->close();
                     <div class="col-md-8 offset-md-2">
 
                         <h1 class="hs-title-1 mb-20">
-                            <span class="wow charsAnimIn" data-splitting="chars">Financial Results</span>
+                            <span class="wow charsAnimIn" data-splitting="chars">Investor Contact</span>
                         </h1>
 
                         <div class="row">
@@ -55,51 +55,38 @@ $stmt_product->close();
             <?php
                 while($data=mysqli_fetch_array($res))
                 {
-
-                
             ?>
 
                 <!-- Post -->
                 <div class="blog-item box-shadow round p-4 p-md-5">
 
                     <!-- Post Title -->
-                    <h2 class="blog-item-title"><a href="main-blog-single-sidebar-right.html"><?php echo $data["title"]?></a>
-                    </h2>
+                    <h2 class="blog-item-title"><a href="main-blog-single-sidebar-right.html"><?php echo $data["title"]?></a></h2>
 
                     <!-- Author, Categories, Comments -->
-                    <div class="blog-item-data">
+                    <!-- <div class="blog-item-data">
                         <a href="#"><i class="mi-clock size-16"></i> <?php echo date("M d Y",strtotime($data["date"]))?></a>
                         <span class="separator">&nbsp;</span>
-                    </div>
+                    </div> -->
 
-                    <!-- Text Intro -->
+                    <!-- Additional Details -->
                     <div class="mb-10">
-                        <p>
-                        Please download the PDF below to view the details.
-                        </p>
+                        <p><?php echo $data["name"]?></p>
+                        <p><?php echo $data["designation"]?></p>
+                        <p><?php echo $data["address"]?></p>
+                        <p><strong>Email:</strong> <?php echo $data["email"]?></p>
+                        <?php if (!empty($data["website"])) { ?>
+                            <p><strong>Website:</strong> <a href="<?php echo $data["website"]?>" target="_blank"><?php echo $data["website"]?></a></p>
+                        <?php } ?>
+                        <?php if (!empty($data["contact"])) { ?>
+                            <p><strong>Contact:</strong> <?php echo $data["contact"]?></p>
+                        <?php } ?>
                     </div>
-
-                    <!-- Read More Link -->
-                    <div class="col-lg-5">
-
-                        <!-- Send Button -->
-                        <div class="pt-10">
-                            <a href="dashboard5588/documents/inv_data/<?php echo $data["filename"]?>" download="download" class=" btn btn-mod btn-large btn-round btn-hover-anim"><span>Download</span></a>
-                            <!-- <button type="submit" class=" btn btn-mod btn-large btn-round btn-hover-anim"
-                                id="submit_btn" name="submit_btn" a href="documents/announcement/DUR1.pdf">
-                                <span>Download</span></button> -->
-                        </div>
-                    </div>
-
                 </div>
                 <!-- End Post -->
                  <?php
                 }
                  ?>
-
-
-
-                
 
             </div>
 
@@ -110,6 +97,6 @@ $stmt_product->close();
 </main>
 <?php
 
-include"footer.php";
+include "footer.php";
 
 ?>

@@ -153,15 +153,6 @@ if (!isset($_SESSION["userlogin"])) {
           <span>Board Members</span>
         </a>
       </li>
-
-      <!-- Downloads -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="downloads.php">
-          <i class="bi bi-download"></i>
-          <span>Downloads</span>
-        </a>
-      </li>
-      
       <!-- manufacturing -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="manufacturing.php">
@@ -175,22 +166,6 @@ if (!isset($_SESSION["userlogin"])) {
         <a class="nav-link collapsed" href="sustainability.php">
           <i class="bi bi-columns-gap"></i>
           <span>Sustainability</span>
-        </a>
-      </li>
-
-      <!-- services -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="services.php">
-          <i class="bi bi-filter-left"></i>
-          <span>Services </span>
-        </a>
-      </li>
-
-      <!-- Videos -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="videos.php">
-          <i class="bi bi-tv"></i>
-          <span>Videos</span>
         </a>
       </li>
 
@@ -218,14 +193,7 @@ if (!isset($_SESSION["userlogin"])) {
         </a>
       </li>
 
-      <!-- Products -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="products.php">
-          <i class="bi bi-bag"></i>
-          <span>Products</span>
-        </a>
-      </li>
-
+      
        <!-- Investors Menu -->
        <li class="nav-item">
         <a class="nav-link collapsed" href="investors_menu.php">
@@ -267,14 +235,21 @@ if (!isset($_SESSION["userlogin"])) {
         </a>
       </li>
 
+      <!-- Company Information -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="ldor.php">
+          <i class="bi bi-clipboard-data"></i>
+          <span>LDOR</span>
+        </a>
+      </li>
 
        <!-- Corporate Announcement -->
-       <li class="nav-item">
+       <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="corporate_announcement.php">
           <i class="bi bi-megaphone"></i>
           <span>Corporate Announcement</span>
         </a>
-      </li>
+      </li> -->
       <!-- Primary Benifits -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="primary_benifits.php">
