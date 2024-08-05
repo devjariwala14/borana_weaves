@@ -99,8 +99,7 @@ function deletedata(id) {
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone Number</th>
-                                <th scope="col">Message</th>
-                                <th scope="col">Document</th>
+                                <th scope="col">Resume</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -116,7 +115,7 @@ function deletedata(id) {
                                 <td><?= $row["name"] ?></td>
                                 <td><?= $row["email"] ?></td>
                                 <td><?= $row["number"] ?></td>
-                                <td><?= $row["msg"] ?></td>
+                              
                                 <td>
                                     <div style="display: flex; align-items: center;">
                                         <a href="documents/career/<?= $row["download"] ?>" class="btn btn-primary me-2" download>

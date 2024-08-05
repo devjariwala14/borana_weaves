@@ -53,26 +53,10 @@ if (isset($_COOKIE['view_id'])) {
                             <textarea name="msg" class="form-control"
                                 readonly><?php echo (isset($data['msg'])) ? htmlspecialchars($data['msg']) : ''; ?></textarea>
                         </div>
-                        <div class="col-md-12" <?php echo (isset($mode) && $mode == 'view') ? 'hidden' : '' ?>>
-                            <label for="inputNumber" class="col-sm-2 col-form-label  mt-4">Image</label>
-                            <input class="form-control" type="file" id="c_image" name="c_image" data_btn_text="Browse"
-                                onchange="readURL(this,'PreviewImage')" />
-                        </div>
-
-                        <div>
-                            <label class="font-bold text-primary mt-2  mb-3"
-                                style="display:<?php echo (isset($mode)) ? 'block' : 'none' ?>">Preview</label>
-                            <img src="<?php echo (isset($mode)) ? 'images/career/' . $data["file_path"] : '' ?>"
-                                name="PreviewImage" id="PreviewImage" height="300"
-                                style="display:<?php echo (isset($mode)) ? 'block' : 'none' ?>"
-                                class="object-cover shadow rounded  mt-3  mb-3">
-                            <div id="imgdiv" style="color:red"></div>
-                            <input type="hidden" name="old_img" id="old_img"
-                                value="<?php echo (isset($mode) && $mode == 'edit') ? $data["file_path"] : '' ?>" />
-                        </div>
+                        
 
                         <div class="col-md-12" <?php echo (isset($mode) && $mode == 'view') ? 'hidden' : '' ?>>
-                            <label for="doc" class="col-sm-2 col-form-label">File</label>
+                            <label for="doc" class="col-sm-2 col-form-label">Resume</label>
                             <input class="form-control" type="file" id="doc" name="doc" data_btn_text="Browse"
                                 onchange="readURL(this,'PreviewFile')" />
                         </div>
